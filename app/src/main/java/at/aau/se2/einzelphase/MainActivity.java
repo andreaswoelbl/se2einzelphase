@@ -6,6 +6,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import at.aau.se2.einzelphase.network.TCP;
 
 import java.io.IOException;
 import java.util.concurrent.RejectedExecutionException;
@@ -16,12 +17,19 @@ public class MainActivity extends AppCompatActivity {
     private EditText input;
     private Button button_send;
 
+    private TCP tcp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initNetwork();
         initLayout();
         initUiFunctions();
+    }
+
+    private void initNetwork() {
+        tcp = new TCP(getResources().getString(R.string.server_domain), getResources().getInteger(R.integer.server_port));
     }
 
     private void initLayout() {
@@ -33,9 +41,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initUiFunctions() {
-        button_send.setOnClickListener((view) -> {
+        button_send.setOnClickListener((view) -> tcp.writeThenRead(input.getText().toString(),
+                (response) -> tV_serverAnswer.setText(response),
+                (error) -> {
+                    if (error instanceof IOException) {
+                        tV_serverAnswer.setText(R.string.network_error);
+                        Log.e("Network Error", getResources().getString(R.string.network_error));
+                    } else if (error instanceof RejectedExecutionException) {
+                        tV_serverAnswer.setText(R.string.internal_error);
+                        Log.e("Internal Error", getResources().getString(R.string.internal_error));
+                    }
+                }));
+    }
 
-        });
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        tcp.shutdownExecutor();
     }
 
 }

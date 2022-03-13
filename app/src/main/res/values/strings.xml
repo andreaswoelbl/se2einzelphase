@@ -7,4 +7,14 @@
     <string name="button_send_label">Send</string>
     <string name="button_calculate_label">Calculate</string>
     <string name="checksum_in_binary_label">Checksum in binary:</string>
+
+    <!-- Error messages -->
+    <string name="network_error">Network error occurred</string>
+    <string name="internal_error">Internal error occurred</string>
+
+    <!-- Server information -->
+    <string name="server_domain">se2-isys.aau.at</string>
+    <string name="matriculation_number_hint">e.g. 12042818</string>
+    <integer name="server_port">53212</integer>
+
 </resources>

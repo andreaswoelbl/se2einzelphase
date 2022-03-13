@@ -12,6 +12,8 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:ems="10"
+            android:maxLength="8"
+            android:hint="@string/matriculation_number_hint"
             android:id="@+id/edit_EnterNumber"
             app:layout_constraintStart_toStartOf="@+id/tV_EnterNumber"
             app:layout_constraintTop_toBottomOf="@+id/tV_EnterNumber" android:layout_marginTop="30dp"/>
@@ -38,6 +40,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_answerLabel"
             app:layout_constraintStart_toStartOf="@+id/tv_answerLabel"
             android:lines="2"
+            android:layout_marginEnd="20dp"
             android:layout_marginTop="20dp" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"/>
 
