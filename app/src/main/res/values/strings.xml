@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">SE2 Einzelphase</string>
+
+    <!-- UI labels -->
+    <string name="enter_matriculation_number">Enter matriculation number</string>
+    <string name="server_response_label">Server response:</string>
+    <string name="button_send_label">Send</string>
+    <string name="button_calculate_label">Calculate</string>
+    <string name="checksum_in_binary_label">Checksum in binary:</string>
 </resources>
