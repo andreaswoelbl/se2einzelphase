@@ -6,16 +6,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import at.aau.se2.einzelphase.feature.MatMathOperations;
 import at.aau.se2.einzelphase.network.TCP;
 
 import java.io.IOException;
 import java.util.concurrent.RejectedExecutionException;
 
+/**
+ * @author Andreas Wölbl
+ */
 public class MainActivity extends AppCompatActivity {
 
-    private TextView tV_enter, tV_answerLabel, tV_serverAnswer;
+    private TextView tV_serverAnswer, tV_checkSumBinary;
     private EditText input;
-    private Button button_send;
+    private Button button_send, button_calculateChecksum;
 
     private TCP tcp;
 
@@ -33,11 +37,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initLayout() {
-        tV_enter = findViewById(R.id.tV_EnterNumber);
         input = findViewById(R.id.edit_EnterNumber);
-        tV_answerLabel = findViewById(R.id.tv_answerLabel);
         tV_serverAnswer = findViewById(R.id.tV_serverAnswer);
         button_send = findViewById(R.id.button_send);
+        tV_checkSumBinary = findViewById(R.id.tV_checkSumBinary);
+        button_calculateChecksum = findViewById(R.id.button_calculateChecksum);
     }
 
     private void initUiFunctions() {
@@ -52,6 +56,13 @@ public class MainActivity extends AppCompatActivity {
                         Log.e("Internal Error", getResources().getString(R.string.internal_error));
                     }
                 }));
+
+        button_calculateChecksum.setOnClickListener((view) -> {
+            int checkSum = MatMathOperations.checksumOfMatriculationNumber(input.getText().toString());
+            String binaryChecksum = checkSum == -1 ? getResources().getString(R.string.unknown_matriculation_number) : Integer.toBinaryString(checkSum);
+            Log.d("Checksum", "Calculated checksum of matriculation number: " + checkSum + ", binary: " + binaryChecksum);
+            tV_checkSumBinary.setText(binaryChecksum);
+        });
     }
 
     @Override

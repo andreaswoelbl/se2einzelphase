@@ -11,6 +11,7 @@
     <!-- Error messages -->
     <string name="network_error">Network error occurred</string>
     <string name="internal_error">Internal error occurred</string>
+    <string name="unknown_matriculation_number">Invalid input</string>
 
     <!-- Server information -->
     <string name="server_domain">se2-isys.aau.at</string>

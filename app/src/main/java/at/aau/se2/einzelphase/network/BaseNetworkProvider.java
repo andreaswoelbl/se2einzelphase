@@ -22,9 +22,8 @@ public abstract class BaseNetworkProvider {
 
     private final ExecutorService executor;
 
-    private String server;
-    private Integer port;
-    protected boolean isConnected;
+    private final String server;
+    private final Integer port;
 
     public BaseNetworkProvider(String server, Integer port) {
         executor = Executors.newSingleThreadExecutor();
@@ -67,30 +66,25 @@ public abstract class BaseNetworkProvider {
      * and an output stream of type {@link DataOutputStream}
      *
      * @param server The server domain
-     * @param port The port
+     * @param port   The port
      * @throws IOException
      */
     private void openConnection(String server, int port) throws IOException {
         socket = new Socket(server, port);
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         out = new DataOutputStream(socket.getOutputStream());
-        isConnected = true;
     }
 
     /**
      * Closes the socket and its underlying streams
+     *
      * @throws IOException
      */
     public void closeConnection() throws IOException {
         socket.close();
-        isConnected = false;
     }
 
     public void shutdownExecutor() {
         executor.shutdown();
-    }
-
-    public boolean isConnected() {
-        return isConnected;
     }
 }
