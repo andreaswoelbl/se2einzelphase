@@ -16,7 +16,8 @@
             android:hint="@string/matriculation_number_hint"
             android:id="@+id/edit_EnterNumber"
             app:layout_constraintStart_toStartOf="@+id/tV_EnterNumber"
-            app:layout_constraintTop_toBottomOf="@+id/tV_EnterNumber" android:layout_marginTop="30dp"/>
+            app:layout_constraintTop_toBottomOf="@+id/tV_EnterNumber" android:layout_marginTop="30dp"
+            android:importantForAutofill="no"/>
 
     <TextView
             android:text="@string/enter_matriculation_number"
@@ -39,7 +40,7 @@
             android:layout_height="wrap_content" android:id="@+id/tV_serverAnswer"
             app:layout_constraintTop_toBottomOf="@+id/tv_answerLabel"
             app:layout_constraintStart_toStartOf="@+id/tv_answerLabel"
-            android:lines="2"
+            android:lines="3"
             android:layout_marginEnd="20dp"
             android:layout_marginTop="20dp" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"/>
@@ -51,5 +52,38 @@
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tV_serverAnswer" android:layout_marginTop="30dp"/>
 
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:id="@+id/separator"
+            android:background="#404E57"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button_send"
+    />
+
+    <Button
+            android:text="@string/button_calculate_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/button_calculateChecksum"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tV_checkSumBinary" android:layout_marginTop="40dp"/>
+
+    <TextView
+            android:text="@string/checksum_in_binary_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/tV_sumLabel"
+            app:layout_constraintStart_toStartOf="@+id/tV_serverAnswer"
+            app:layout_constraintTop_toBottomOf="@+id/separator"
+            android:layout_marginTop="30dp"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/tV_checkSumBinary"
+            app:layout_constraintStart_toEndOf="@+id/tV_sumLabel" app:layout_constraintTop_toTopOf="@+id/tV_sumLabel"
+            android:layout_marginStart="20dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
